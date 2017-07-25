@@ -14,13 +14,21 @@ class ReceivePixel {
 		$pageTitle = $this->getArray['pageTitle'];
 		$hostName = $this->getArray['hostName'];
 		$fromIframe = $this->getArray['fromIframe'];
-		$ipAdress = $this->getArray['ipAdress'];
+		$ipAdress = $_SERVER['REMOTE_ADDR'];
 		$invokedOrder = $this->getArray['invokedOrder'];
 		$conn = mysqli_connect($domain, $dbUser, $dbPass, $db) or die('Error connecting to MySQL server.');
 		$insertQuery = "INSERT INTO tags (timestamp, pageTitle, hostName, fromIframe, ipAdress, invokedOrder) VALUES (current_timestamp(), '$pageTitle', '$hostName', $fromIframe, '$ipAdress', $invokedOrder);";
-		echo $insertQuery;
+		//echo $insertQuery;
 		$conn->query($insertQuery);
 		$conn->close();
+		$image = imagecreatetruecolor(0, 1);
+        $bg = imagecolorallocate($image, 255, 255, 255);
+        imagefilledrectangle($image, 0, 0, 1, 1, $bg);
+        //var_dump($pointValues);
+        header('Content-type: image/gif');
+        imagegif($image);
+        imagedestroy($image);
+
 	}
 
 

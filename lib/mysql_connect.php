@@ -1,6 +1,7 @@
 <?php
-$dbUser = 'root';
-$dbPass = 'd3AThMEta1';
+//supply password and user here
+$dbUser = *user;
+$dbPass = *password*;
 $db = 'sheknows_db';
 $domain = 'localhost';
 ?>
